@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace UnitTest.Linq
@@ -53,6 +54,24 @@ namespace UnitTest.Linq
                 .ForEachExecute(target.Add);
             var expected = Enumerable.Range(1, 10)
                 .ToArray();
+            CollectionAssert.AreEqual(expected, target);
+        }
+
+        [TestMethod]
+        public void ToCollection_1()
+        {
+            var target = Enumerable.Range(1, 10).ToCollection();
+            var expected = Enumerable.Range(1, 10).ToArray();
+
+            CollectionAssert.AreEqual(expected, target);
+        }
+
+        [TestMethod]
+        public void ToObservableCollection_1()
+        {
+            var target = Enumerable.Range(1, 10).ToObservableCollection();
+            var expected = Enumerable.Range(1, 10).ToArray();
+
             CollectionAssert.AreEqual(expected, target);
         }
     }
