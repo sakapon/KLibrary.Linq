@@ -11,18 +11,18 @@ namespace UnitTest.Linq
     public class EnumerableHelperTest
     {
         [TestMethod]
-        public void ForEach_1()
+        public void Do_1()
         {
             var target1 = new List<int>();
             var target2 = new List<int>();
             var target3 = new List<int>();
 
             var result = Enumerable.Range(1, 100)
-                .ForEach(target1.Add)
+                .Do(target1.Add)
                 .Where(i => i % 2 == 1)
-                .ForEach(target2.Add)
+                .Do(target2.Add)
                 .Select(i => i * i)
-                .ForEach(target3.Add)
+                .Do(target3.Add)
                 .Take(10)
                 .ToArray();
 
@@ -42,16 +42,16 @@ namespace UnitTest.Linq
         }
 
         [TestMethod]
-        public void ForEachExecute_1()
+        public void Execute_1()
         {
             var sum = 0;
             Enumerable.Range(1, 10)
-                .ForEachExecute(i => sum += i);
+                .Execute(i => sum += i);
             Assert.AreEqual(55, sum);
 
             var target = new List<int>();
             Enumerable.Range(1, 10)
-                .ForEachExecute(target.Add);
+                .Execute(target.Add);
             var expected = Enumerable.Range(1, 10)
                 .ToArray();
             CollectionAssert.AreEqual(expected, target);

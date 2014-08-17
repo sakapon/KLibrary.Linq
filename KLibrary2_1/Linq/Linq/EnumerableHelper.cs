@@ -7,24 +7,48 @@ namespace KLibrary.Linq
 {
     public static class EnumerableHelper
     {
-        public static IEnumerable<TSource> ForEach<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
+        public static IEnumerable<TSource> ToEnumerable<TSource>(this TSource obj)
+        {
+            yield return obj;
+        }
+
+        public static IEnumerable<int> Range2(int minValue, int maxValue)
+        {
+            for (int i = minValue; i <= maxValue; i++)
+            {
+                yield return i;
+            }
+        }
+
+        public static IEnumerable<TSource> Do<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
         {
             if (source == null) throw new ArgumentNullException("source");
+            if (action == null) throw new ArgumentNullException("action");
 
             foreach (var element in source)
             {
-                if (action != null) action(element);
+                action(element);
                 yield return element;
             }
         }
 
-        public static void ForEachExecute<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
+        public static void Execute<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null) throw new ArgumentNullException("source");
 
             foreach (var element in source)
             {
-                if (action != null) action(element);
+            }
+        }
+
+        public static void Execute<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+            if (action == null) throw new ArgumentNullException("action");
+
+            foreach (var element in source)
+            {
+                action(element);
             }
         }
 
