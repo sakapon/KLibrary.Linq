@@ -1,10 +1,15 @@
-﻿$msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
+﻿# $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
+$msbuild = "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe"
 
-cd ..\KLibrary2_1
-Invoke-Expression ($msbuild + " KLibrary2_1.sln /p:Configuration=Release /t:Clean")
-Invoke-Expression ($msbuild + " KLibrary2_1.sln /p:Configuration=Release /t:Rebuild")
+.\IncrementVersion-cs.ps1 ..\KLibrary3\Linq
 
-cd .\Linq
+$slnFilePath = "..\KLibrary3\KLibrary3.sln"
+& $msbuild $slnFilePath /p:Configuration=Release /t:Clean
+& $msbuild $slnFilePath /p:Configuration=Release /t:Rebuild
+
+cd ..\KLibrary3\Linq
 .\NuGetPackup.exe
 
+ni ..\..\Published -type directory -Force
 move *.nupkg ..\..\Published -Force
+explorer ..\..\Published
