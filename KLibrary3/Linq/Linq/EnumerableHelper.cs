@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -32,6 +33,34 @@ namespace KLibrary.Linq
         public static TResult[] MakeArray<TResult>(this TResult element)
         {
             return new[] { element };
+        }
+
+        /// <summary>
+        /// Creates a <see cref="Collection{TSource}"/> from an <see cref="IEnumerable{TSource}"/>.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <returns>A <see cref="Collection{TSource}"/> that contains elements from the input sequence.</returns>
+        [DebuggerHidden]
+        public static Collection<TSource> ToCollection<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+
+            return new Collection<TSource>((source as IList<TSource>) ?? source.ToArray());
+        }
+
+        /// <summary>
+        /// Creates an <see cref="ObservableCollection{TSource}"/> from an <see cref="IEnumerable{TSource}"/>.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <returns>An <see cref="ObservableCollection{TSource}"/> that contains elements from the input sequence.</returns>
+        [DebuggerHidden]
+        public static ObservableCollection<TSource> ToObservableCollection<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+
+            return new ObservableCollection<TSource>(source);
         }
 
         /// <summary>
