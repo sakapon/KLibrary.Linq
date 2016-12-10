@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Linq\Enumerable2.cs" />
     <Compile Include="Linq\EnumerableHelper.cs" />
+    <Compile Include="Linq\Lab\EnumerableHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
