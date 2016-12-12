@@ -66,5 +66,29 @@ namespace UnitTest.Linq
                 .Execute(target.Add);
             CollectionAssert.AreEqual(expected, target);
         }
+
+        [TestMethod]
+        public void Between()
+        {
+            // 1, 4, 9, 16, ..., 100
+            var n_2 = Enumerable.Range(1, 10).Select(x => x * x).ToArray();
+            // 3, 5, 7, 9, ..., 19
+            var expected = Enumerable.Range(1, 9).Select(x => 2 * x + 1).ToArray();
+
+            var actual = n_2.Between((x1, x2) => x2 - x1).ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Successive()
+        {
+            // 3, 5, 7, 9, ..., 19
+            var deltas = Enumerable.Range(1, 9).Select(x => 2 * x + 1).ToArray();
+            // 1, 4, 9, 16, ..., 100
+            var expected = Enumerable.Range(1, 10).Select(x => x * x).ToArray();
+
+            var actual = deltas.Successive(1, (x, d) => x + d).ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
