@@ -11,42 +11,6 @@ namespace KLibrary.Linq
     public static class Enumerable2
     {
         /// <summary>
-        /// Prepends an element to the head of a sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <param name="source">A sequence of values.</param>
-        /// <param name="element">The value to be prepended.</param>
-        /// <returns>A concatenated <see cref="IEnumerable{TSource}"/>.</returns>
-        [DebuggerHidden]
-        public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource element)
-        {
-            if (source == null) throw new ArgumentNullException("source");
-
-            yield return element;
-
-            foreach (var item in source)
-                yield return item;
-        }
-
-        /// <summary>
-        /// Appends an element to the tail of a sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <param name="source">A sequence of values.</param>
-        /// <param name="element">The value to be appended.</param>
-        /// <returns>A concatenated <see cref="IEnumerable{TSource}"/>.</returns>
-        [DebuggerHidden]
-        public static IEnumerable<TSource> Append<TSource>(this IEnumerable<TSource> source, TSource element)
-        {
-            if (source == null) throw new ArgumentNullException("source");
-
-            foreach (var item in source)
-                yield return item;
-
-            yield return element;
-        }
-
-        /// <summary>
         /// Does an action for each element of a sequence.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
@@ -93,6 +57,42 @@ namespace KLibrary.Linq
 
             foreach (var item in source)
                 action(item);
+        }
+
+        /// <summary>
+        /// Prepends an element to the head of a sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="element">The value to be prepended.</param>
+        /// <returns>A concatenated <see cref="IEnumerable{TSource}"/>.</returns>
+        [DebuggerHidden]
+        public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource element)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+
+            yield return element;
+
+            foreach (var item in source)
+                yield return item;
+        }
+
+        /// <summary>
+        /// Appends an element to the tail of a sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="element">The value to be appended.</param>
+        /// <returns>A concatenated <see cref="IEnumerable{TSource}"/>.</returns>
+        [DebuggerHidden]
+        public static IEnumerable<TSource> Append<TSource>(this IEnumerable<TSource> source, TSource element)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+
+            foreach (var item in source)
+                yield return item;
+
+            yield return element;
         }
 
         /// <summary>
