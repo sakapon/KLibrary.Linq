@@ -37,6 +37,7 @@ namespace KLibrary.Linq
         /// <param name="source">A sequence of values.</param>
         /// <param name="action">An action to apply to each element; the second parameter of the function represents the index of the source element.</param>
         /// <returns>An <see cref="IEnumerable{TSource}"/> that contains the same elements as the input sequence.</returns>
+        [DebuggerStepThrough]
         public static IEnumerable<TSource> Do<TSource>(this IEnumerable<TSource> source, Action<TSource, int> action)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -77,6 +78,23 @@ namespace KLibrary.Linq
 
             foreach (var item in source)
                 action(item);
+        }
+
+        /// <summary>
+        /// Executes enumeration of a sequence, and does an action for each element of the sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="action">An action to apply to each element; the second parameter of the function represents the index of the source element.</param>
+        [DebuggerStepThrough]
+        public static void Execute<TSource>(this IEnumerable<TSource> source, Action<TSource, int> action)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
+            var i = -1;
+            foreach (var item in source)
+                action(item, ++i);
         }
 
         /// <summary>
