@@ -54,7 +54,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Linq\Enumerable2Test.cs" />
-    <Compile Include="Linq\EnumerableHelperTest.cs" />
+    <Compile Include="Linq\EnumerablePipelinesTest.cs" />
+    <Compile Include="Linq\Lab\RecursiveHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
