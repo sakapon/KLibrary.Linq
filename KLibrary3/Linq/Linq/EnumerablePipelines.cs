@@ -8,7 +8,7 @@ namespace KLibrary.Linq
     /// <summary>
     /// Provides a set of methods to extend LINQ to Objects.
     /// </summary>
-    public static class Enumerable2
+    public static class EnumerablePipelines
     {
         /// <summary>
         /// Does an action for each element of a sequence.

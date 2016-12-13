@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace KLibrary.Linq.Lab
 {
-    public static class Enumerable2
+    public static class EnumerablePipelines
     {
         public static IEnumerable<TSource> CopyTo<TSource>(this IEnumerable<TSource> source, TSource[] array)
         {
