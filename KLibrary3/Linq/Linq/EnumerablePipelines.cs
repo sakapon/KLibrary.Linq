@@ -31,6 +31,26 @@ namespace KLibrary.Linq
         }
 
         /// <summary>
+        /// Does an action for each element of a sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="action">An action to apply to each element; the second parameter of the function represents the index of the source element.</param>
+        /// <returns>An <see cref="IEnumerable{TSource}"/> that contains the same elements as the input sequence.</returns>
+        public static IEnumerable<TSource> Do<TSource>(this IEnumerable<TSource> source, Action<TSource, int> action)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
+            var i = -1;
+            foreach (var item in source)
+            {
+                action(item, ++i);
+                yield return item;
+            }
+        }
+
+        /// <summary>
         /// Executes enumeration of a sequence.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
