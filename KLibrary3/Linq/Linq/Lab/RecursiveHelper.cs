@@ -8,7 +8,7 @@ namespace KLibrary.Linq.Lab
     {
         public static IEnumerable<TSource> EnumerateRecursively<TSource>(this TSource initialValue, Func<TSource, TSource> getNextItem)
         {
-            if (getNextItem == null) throw new ArgumentNullException("getNextItem");
+            if (getNextItem == null) throw new ArgumentNullException(nameof(getNextItem));
 
             var o = initialValue;
             while (true)
@@ -20,20 +20,21 @@ namespace KLibrary.Linq.Lab
 
         public static IEnumerable<TSource> EnumerateRecursively<TSource>(this TSource initialValue, Func<TSource, IEnumerable<TSource>> getNextItems)
         {
-            if (getNextItems == null) throw new ArgumentNullException("getNextItems");
+            if (getNextItems == null) throw new ArgumentNullException(nameof(getNextItems));
 
             return EnumerateRecursively_Private(initialValue, getNextItems);
         }
 
         static IEnumerable<TSource> EnumerateRecursively_Private<TSource>(TSource initialValue, Func<TSource, IEnumerable<TSource>> getNextItems)
         {
-            return initialValue.MakeEnumerable()
-                .Concat(getNextItems(initialValue).SelectMany(o => EnumerateRecursively_Private(o, getNextItems)));
+            return getNextItems(initialValue)
+                .SelectMany(o => EnumerateRecursively_Private(o, getNextItems))
+                .Prepend(initialValue);
         }
 
         public static IEnumerable<TSource> EnumerateRecursively2<TSource>(this TSource initialValue, Func<TSource, IEnumerable<TSource>> getNextItems)
         {
-            if (getNextItems == null) throw new ArgumentNullException("getNextItems");
+            if (getNextItems == null) throw new ArgumentNullException(nameof(getNextItems));
 
             return EnumerateRecursively2_Private(new[] { initialValue }, getNextItems);
         }
