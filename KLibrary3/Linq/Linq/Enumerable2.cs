@@ -42,7 +42,7 @@ namespace KLibrary.Linq
         /// <returns>A <see cref="Collection{TSource}"/> that contains elements from the input sequence.</returns>
         public static Collection<TSource> ToCollection<TSource>(this IEnumerable<TSource> source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             return new Collection<TSource>((source as IList<TSource>) ?? source.ToArray());
         }
@@ -55,7 +55,7 @@ namespace KLibrary.Linq
         /// <returns>An <see cref="ObservableCollection{TSource}"/> that contains elements from the input sequence.</returns>
         public static ObservableCollection<TSource> ToObservableCollection<TSource>(this IEnumerable<TSource> source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             return new ObservableCollection<TSource>(source);
         }

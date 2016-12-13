@@ -20,8 +20,8 @@ namespace KLibrary.Linq
         [DebuggerStepThrough]
         public static IEnumerable<TSource> Do<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (action == null) throw new ArgumentNullException("action");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
             foreach (var item in source)
             {
@@ -38,7 +38,7 @@ namespace KLibrary.Linq
         [DebuggerStepThrough]
         public static void Execute<TSource>(this IEnumerable<TSource> source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             foreach (var item in source) ;
         }
@@ -52,8 +52,8 @@ namespace KLibrary.Linq
         [DebuggerStepThrough]
         public static void Execute<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (action == null) throw new ArgumentNullException("action");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
             foreach (var item in source)
                 action(item);
@@ -69,7 +69,7 @@ namespace KLibrary.Linq
         [DebuggerStepThrough]
         public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource element)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             yield return element;
 
@@ -87,7 +87,7 @@ namespace KLibrary.Linq
         [DebuggerStepThrough]
         public static IEnumerable<TSource> Append<TSource>(this IEnumerable<TSource> source, TSource element)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             foreach (var item in source)
                 yield return item;
@@ -105,8 +105,8 @@ namespace KLibrary.Linq
         /// <returns>An <see cref="IEnumerable{TSource}"/> that contains distinct elements from the input sequence.</returns>
         public static IEnumerable<TSource> Distinct<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (keySelector == null) throw new ArgumentNullException("keySelector");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
 
             var keySet = new HashSet<TKey>();
 
@@ -127,8 +127,8 @@ namespace KLibrary.Linq
         /// <returns>A sequence of segments of values.</returns>
         public static IEnumerable<TSource[]> Segment<TSource>(this IEnumerable<TSource> source, int lengthOfSegment)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (lengthOfSegment <= 0) throw new ArgumentOutOfRangeException("lengthOfSegment", lengthOfSegment, "The value must be positive.");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (lengthOfSegment <= 0) throw new ArgumentOutOfRangeException(nameof(lengthOfSegment), lengthOfSegment, "The value must be positive.");
 
             var l = new List<TSource>();
 
@@ -157,8 +157,8 @@ namespace KLibrary.Linq
         /// <returns>An <see cref="IEnumerable{TResult}"/>.</returns>
         public static IEnumerable<TResult> Between<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TSource, TResult> func)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (func == null) throw new ArgumentNullException("func");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (func == null) throw new ArgumentNullException(nameof(func));
 
             var enumerator = source.GetEnumerator();
             if (!enumerator.MoveNext()) yield break;
@@ -185,8 +185,8 @@ namespace KLibrary.Linq
         /// <returns>An <see cref="IEnumerable{TResult}"/>.</returns>
         public static IEnumerable<TResult> Successive<TSource, TResult>(this IEnumerable<TSource> source, TResult seed, Func<TResult, TSource, TResult> func)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (func == null) throw new ArgumentNullException("func");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (func == null) throw new ArgumentNullException(nameof(func));
 
             var current = seed;
             yield return current;

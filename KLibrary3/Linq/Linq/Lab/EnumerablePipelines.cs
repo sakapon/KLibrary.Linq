@@ -8,8 +8,8 @@ namespace KLibrary.Linq.Lab
     {
         public static IEnumerable<TSource> CopyTo<TSource>(this IEnumerable<TSource> source, TSource[] array)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (array == null) throw new ArgumentNullException("array");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (array == null) throw new ArgumentNullException(nameof(array));
 
             using (var enumerator = source.GetEnumerator())
             {
