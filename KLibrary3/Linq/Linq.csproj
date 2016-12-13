@@ -46,6 +46,7 @@
     <Compile Include="Linq\EnumerablePipelines.cs" />
     <Compile Include="Linq\Lab\Enumerable2.cs" />
     <Compile Include="Linq\Lab\EnumerablePipelines.cs" />
+    <Compile Include="Linq\Lab\RecursiveHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
