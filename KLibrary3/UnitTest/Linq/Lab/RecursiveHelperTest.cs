@@ -44,9 +44,7 @@ namespace UnitTest.Linq.Lab
                 .EnumerateRecursively(p => Directory.EnumerateDirectories(p));
 
             foreach (var path in query)
-            {
                 Console.WriteLine(path);
-            }
         }
 
         [TestMethod]
@@ -57,9 +55,7 @@ namespace UnitTest.Linq.Lab
                     .Select(p => new { Index = _.Index + 1, Path = p }));
 
             foreach (var item in query)
-            {
-                Console.WriteLine("{0}: {1}", item.Index, item.Path);
-            }
+                Console.WriteLine($"{item.Index}: {item.Path}");
         }
 
         [TestMethod]
@@ -70,9 +66,7 @@ namespace UnitTest.Linq.Lab
                     .Select(p => new { Index = _.Index + 1, Path = p }));
 
             foreach (var item in query)
-            {
-                Console.WriteLine("{0}: {1}", item.Index, item.Path);
-            }
+                Console.WriteLine($"{item.Index}: {item.Path}");
         }
     }
 }
