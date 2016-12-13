@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace KLibrary.Linq.Lab
 {
-    public static class EnumerableHelper
+    public static class Enumerable2
     {
         public static IEnumerable<int> Range2(int minValue, int maxValue)
         {

@@ -53,8 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Linq\Enumerable2Test.cs" />
     <Compile Include="Linq\EnumerablePipelinesTest.cs" />
-    <Compile Include="Linq\EnumerableHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

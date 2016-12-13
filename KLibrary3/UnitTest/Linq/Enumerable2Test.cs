@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTest.Linq
 {
     [TestClass]
-    public class EnumerableHelperTest
+    public class Enumerable2Test
     {
         [TestMethod]
         public void ToCollection_IEnumerable()

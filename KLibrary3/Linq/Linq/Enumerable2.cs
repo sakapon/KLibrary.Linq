@@ -9,7 +9,7 @@ namespace KLibrary.Linq
     /// <summary>
     /// Provides a set of methods to extend LINQ to Objects.
     /// </summary>
-    public static class EnumerableHelper
+    public static class Enumerable2
     {
         /// <summary>
         /// Creates an <see cref="IEnumerable{TResult}"/> from a single object.
