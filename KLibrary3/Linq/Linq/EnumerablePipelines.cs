@@ -17,7 +17,7 @@ namespace KLibrary.Linq
         /// <param name="source">A sequence of values.</param>
         /// <param name="action">An action to apply to each element.</param>
         /// <returns>An <see cref="IEnumerable{TSource}"/> that contains the same elements as the input sequence.</returns>
-        [DebuggerHidden]
+        [DebuggerStepThrough]
         public static IEnumerable<TSource> Do<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
         {
             if (source == null) throw new ArgumentNullException("source");
@@ -35,7 +35,7 @@ namespace KLibrary.Linq
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">A sequence of values.</param>
-        [DebuggerHidden]
+        [DebuggerStepThrough]
         public static void Execute<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null) throw new ArgumentNullException("source");
@@ -49,7 +49,7 @@ namespace KLibrary.Linq
         /// <typeparam name="TSource">The type of the elements of source.</typeparam>
         /// <param name="source">A sequence of values.</param>
         /// <param name="action">An action to apply to each element.</param>
-        [DebuggerHidden]
+        [DebuggerStepThrough]
         public static void Execute<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
         {
             if (source == null) throw new ArgumentNullException("source");
@@ -66,7 +66,7 @@ namespace KLibrary.Linq
         /// <param name="source">A sequence of values.</param>
         /// <param name="element">The value to be prepended.</param>
         /// <returns>A concatenated <see cref="IEnumerable{TSource}"/>.</returns>
-        [DebuggerHidden]
+        [DebuggerStepThrough]
         public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource element)
         {
             if (source == null) throw new ArgumentNullException("source");
@@ -84,7 +84,7 @@ namespace KLibrary.Linq
         /// <param name="source">A sequence of values.</param>
         /// <param name="element">The value to be appended.</param>
         /// <returns>A concatenated <see cref="IEnumerable{TSource}"/>.</returns>
-        [DebuggerHidden]
+        [DebuggerStepThrough]
         public static IEnumerable<TSource> Append<TSource>(this IEnumerable<TSource> source, TSource element)
         {
             if (source == null) throw new ArgumentNullException("source");
