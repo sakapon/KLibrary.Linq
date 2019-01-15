@@ -1,4 +1,7 @@
 # KLibrary.Linq
+[![license](https://img.shields.io/github/license/sakapon/KLibrary.Linq.svg)](LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/KLibrary.Linq.svg)](https://www.nuget.org/packages/KLibrary.Linq/)
+[![NuGet](https://img.shields.io/nuget/dt/KLibrary.Linq.svg)](https://www.nuget.org/packages/KLibrary.Linq/)
 
 An extension library for LINQ.
 
