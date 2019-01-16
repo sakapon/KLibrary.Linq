@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <AssemblyName>KLibrary.Linq</AssemblyName>
     <RootNamespace>KLibrary</RootNamespace>
-    <Version>4.0.5</Version>
+    <Version>4.0.4</Version>
     <Title>KLibrary.Linq</Title>
     <AssemblyTitle>KLibrary.Linq</AssemblyTitle>
     <Product>KLibrary</Product>
