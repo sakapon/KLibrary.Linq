@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTest.Linq
 {
     [TestClass]
-    public class GroupingHelperTest
+    public class GroupingTest
     {
         [TestMethod]
         public void GroupBySequentially_1()

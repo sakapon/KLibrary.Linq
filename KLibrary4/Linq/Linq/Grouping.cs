@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace KLibrary.Linq
 {
-    public static class GroupingHelper
+    public static class Grouping
     {
         public static IEnumerable<IGrouping<TKey, TSource>> GroupBySequentially<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
