@@ -9,8 +9,8 @@ namespace KLibrary.Linq
     {
         public static IEnumerable<IGrouping<TKey, TSource>> GroupBySequentially<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (keySelector == null) throw new ArgumentNullException("keySelector");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
 
             var queue = new Queue<TSource>();
             var currentKey = default(TKey);
@@ -51,14 +51,8 @@ namespace KLibrary.Linq
             Values = values;
         }
 
-        public IEnumerator<TElement> GetEnumerator()
-        {
-            return Values.GetEnumerator();
-        }
+        public IEnumerator<TElement> GetEnumerator() => Values.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
