@@ -35,7 +35,6 @@ namespace KLibrary.Linq
             if (queue.Count != 0)
             {
                 yield return new Grouping<TKey, TSource>(currentKey, queue.ToArray());
-                queue.Clear();
             }
         }
     }
