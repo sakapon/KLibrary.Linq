@@ -17,6 +17,9 @@ namespace UnitTest.Linq
             var range1 = Enumerable.Range(1, length1);
             var range2 = Enumerable.Range(1, length2);
 
+            var actual0 = range1.ZipForShort(range1).ToArray();
+            Assert.AreEqual(length1, actual0.Length);
+
             var actual1 = range1.ZipForShort(range2).ToArray();
             Assert.AreEqual(length1, actual1.Length);
 
@@ -31,6 +34,9 @@ namespace UnitTest.Linq
             var length2 = 10;
             var range1 = Enumerable.Range(1, length1);
             var range2 = Enumerable.Range(1, length2);
+
+            var actual0 = range1.ZipForLong(range1).ToArray();
+            Assert.AreEqual(length1, actual0.Length);
 
             var actual1 = range1.ZipForLong(range2).ToArray();
             Assert.AreEqual(length2, actual1.Length);
@@ -48,6 +54,9 @@ namespace UnitTest.Linq
             var length2 = 10;
             var range1 = Enumerable.Range(1, length1);
             var range2 = Enumerable.Range(1, length2);
+
+            var actual0 = range1.ZipForFirst(range1).ToArray();
+            Assert.AreEqual(length1, actual0.Length);
 
             var actual1 = range1.ZipForFirst(range2).ToArray();
             Assert.AreEqual(length1, actual1.Length);
