@@ -79,9 +79,15 @@ namespace KLibrary.Linq
         /// <param name="element">The value to be repeated.</param>
         /// <param name="count">The number of times to repeat the value in the generated sequence. <see langword="null"/> if the value is repeated infinitely.</param>
         /// <returns>An <see cref="IEnumerable{TResult}"/> that contains a repeated value.</returns>
-        public static IEnumerable<TResult> Repeat<TResult>(TResult element, int? count)
+        public static IEnumerable<TResult> Repeat<TResult>(TResult element, int? count = null)
         {
-            return count.HasValue ? Enumerable.Repeat(element, count.Value) : Repeat(element);
+            return count.HasValue ? Enumerable.Repeat(element, count.Value) : RepeatForever();
+
+            IEnumerable<TResult> RepeatForever()
+            {
+                while (true)
+                    yield return element;
+            }
         }
     }
 }
