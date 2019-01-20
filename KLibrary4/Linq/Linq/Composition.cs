@@ -3,8 +3,20 @@ using System.Collections.Generic;
 
 namespace KLibrary.Linq
 {
+    /// <summary>
+    /// Provides a set of methods to compose sequences.
+    /// </summary>
     public static class Composition
     {
+        /// <summary>
+        /// Creates a tuple from to the corresponding elements of two sequences, producing a sequence of the results.
+        /// This merges sequences until it reaches the end of one of them.
+        /// </summary>
+        /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
+        /// <typeparam name="TSecond">The type of the elements of the second input sequence.</typeparam>
+        /// <param name="first">The first sequence to merge.</param>
+        /// <param name="second">The second sequence to merge.</param>
+        /// <returns>An <see cref="IEnumerable{Tuple{TFirst, TSecond}}"/> that contains merged elements of two input sequences.</returns>
         public static IEnumerable<Tuple<TFirst, TSecond>> ZipForShort<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));
@@ -19,6 +31,15 @@ namespace KLibrary.Linq
             }
         }
 
+        /// <summary>
+        /// Creates a tuple from to the corresponding elements of two sequences, producing a sequence of the results.
+        /// This merges sequences until it reaches the end of both of them.
+        /// </summary>
+        /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
+        /// <typeparam name="TSecond">The type of the elements of the second input sequence.</typeparam>
+        /// <param name="first">The first sequence to merge.</param>
+        /// <param name="second">The second sequence to merge.</param>
+        /// <returns>An <see cref="IEnumerable{Tuple{TFirst, TSecond}}"/> that contains merged elements of two input sequences.</returns>
         public static IEnumerable<Tuple<TFirst, TSecond>> ZipForLong<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));
@@ -37,6 +58,15 @@ namespace KLibrary.Linq
             }
         }
 
+        /// <summary>
+        /// Creates a tuple from to the corresponding elements of two sequences, producing a sequence of the results.
+        /// This merges sequences until it reaches the end of the first.
+        /// </summary>
+        /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
+        /// <typeparam name="TSecond">The type of the elements of the second input sequence.</typeparam>
+        /// <param name="first">The first sequence to merge.</param>
+        /// <param name="second">The second sequence to merge.</param>
+        /// <returns>An <see cref="IEnumerable{Tuple{TFirst, TSecond}}"/> that contains merged elements of two input sequences.</returns>
         public static IEnumerable<Tuple<TFirst, TSecond>> ZipForFirst<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));
