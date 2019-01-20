@@ -9,7 +9,7 @@ namespace KLibrary.Linq
     public static class Composition
     {
         /// <summary>
-        /// Creates a tuple from to the corresponding elements of two sequences, producing a sequence of the results.
+        /// Creates a tuple from the corresponding elements of two sequences, producing a sequence of the results.
         /// This merges sequences until it reaches the end of one of them.
         /// </summary>
         /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
@@ -32,7 +32,7 @@ namespace KLibrary.Linq
         }
 
         /// <summary>
-        /// Creates a tuple from to the corresponding elements of two sequences, producing a sequence of the results.
+        /// Creates a tuple from the corresponding elements of two sequences, producing a sequence of the results.
         /// This merges sequences until it reaches the end of both of them.
         /// </summary>
         /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
@@ -59,7 +59,7 @@ namespace KLibrary.Linq
         }
 
         /// <summary>
-        /// Creates a tuple from to the corresponding elements of two sequences, producing a sequence of the results.
+        /// Creates a tuple from the corresponding elements of two sequences, producing a sequence of the results.
         /// This merges sequences until it reaches the end of the first.
         /// </summary>
         /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
