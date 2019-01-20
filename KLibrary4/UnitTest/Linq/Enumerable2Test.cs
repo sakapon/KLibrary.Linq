@@ -58,7 +58,7 @@ namespace UnitTest.Linq
         }
 
         [TestMethod]
-        public void Repeat_1()
+        public void Repeat_Default()
         {
             var o = new object();
             var expected = Enumerable.Repeat(o, 10).ToArray();
@@ -78,7 +78,7 @@ namespace UnitTest.Linq
         }
 
         [TestMethod]
-        public void Repeat_NotNull()
+        public void Repeat_Number()
         {
             var o = new object();
             var expected = Enumerable.Repeat(o, 10).ToArray();
