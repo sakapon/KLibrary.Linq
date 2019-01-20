@@ -6,6 +6,15 @@ namespace KLibrary.Linq.Lab
 {
     public static class Pipelines
     {
+        public static IEnumerable<Tuple<TSource, int>> WithIndex<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
+            var i = -1;
+            foreach (var item in source)
+                yield return Tuple.Create(item, ++i);
+        }
+
         public static IEnumerable<TSource> CopyTo<TSource>(this IEnumerable<TSource> source, TSource[] array)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
