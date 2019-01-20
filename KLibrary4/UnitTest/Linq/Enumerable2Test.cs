@@ -11,6 +11,26 @@ namespace UnitTest.Linq
     public class Enumerable2Test
     {
         [TestMethod]
+        public void CreateEnumerable()
+        {
+            var o = new object();
+            var expected = new[] { o };
+            var actual = o.CreateEnumerable().ToArray();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CreateArray()
+        {
+            var o = new object();
+            var expected = new[] { o };
+            var actual = o.CreateArray();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ToCollection_IEnumerable()
         {
             var expected = Enumerable.Range(1, 10).ToArray();

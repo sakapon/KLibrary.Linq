@@ -18,7 +18,7 @@ namespace KLibrary.Linq
         /// <typeparam name="TResult">The type of the object.</typeparam>
         /// <param name="element">An object.</param>
         /// <returns>An <see cref="IEnumerable{TResult}"/> that contains the input object.</returns>
-        public static IEnumerable<TResult> MakeEnumerable<TResult>(this TResult element)
+        public static IEnumerable<TResult> CreateEnumerable<TResult>(this TResult element)
         {
             yield return element;
         }
@@ -29,7 +29,7 @@ namespace KLibrary.Linq
         /// <typeparam name="TResult">The type of the object.</typeparam>
         /// <param name="element">An object.</param>
         /// <returns>An array that contains the input object.</returns>
-        public static TResult[] MakeArray<TResult>(this TResult element)
+        public static TResult[] CreateArray<TResult>(this TResult element)
         {
             return new[] { element };
         }
