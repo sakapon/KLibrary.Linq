@@ -16,8 +16,10 @@ namespace UnitTest.Linq.Lab
             CollectionAssert.AreEqual(Enumerable.Range(3, 10).ToArray(), Range(3).Take(10).ToArray());
             CollectionAssert.AreEqual(Enumerable.Range(0, 10).ToArray(), Range(0, 10).ToArray());
             CollectionAssert.AreEqual(Enumerable.Range(3, 10).ToArray(), Range(3, 10).ToArray());
+            CollectionAssert.AreEqual(Enumerable.Empty<int>().ToArray(), Range(3, 0).ToArray());
             CollectionAssert.AreEqual(Enumerable.Range(0, 10).Select(i => 2 * i).ToArray(), Range(0, null, 2).Take(10).ToArray());
             CollectionAssert.AreEqual(Enumerable.Range(0, 10).Select(i => 2 * i + 3).ToArray(), Range(3, 10, 2).ToArray());
+            CollectionAssert.AreEqual(Enumerable.Range(-6, 10).Reverse().ToArray(), Range(3, 10, -1).ToArray());
         }
     }
 }
