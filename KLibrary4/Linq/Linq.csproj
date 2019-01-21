@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <AssemblyName>KLibrary.Linq</AssemblyName>
     <RootNamespace>KLibrary</RootNamespace>
-    <Version>4.0.5</Version>
+    <Version>4.0.6</Version>
     <Title>KLibrary.Linq</Title>
     <AssemblyTitle>KLibrary.Linq</AssemblyTitle>
     <Product>KLibrary</Product>
@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/sakapon/KLibrary.Linq</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/sakapon/KLibrary.Linq/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>LINQ</PackageTags>
-    <PackageReleaseNotes>For .NET Standard.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add features such as composition and grouping.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

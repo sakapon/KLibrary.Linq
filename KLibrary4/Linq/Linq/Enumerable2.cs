@@ -18,7 +18,7 @@ namespace KLibrary.Linq
         /// <typeparam name="TResult">The type of the object.</typeparam>
         /// <param name="element">An object.</param>
         /// <returns>An <see cref="IEnumerable{TResult}"/> that contains the input object.</returns>
-        public static IEnumerable<TResult> MakeEnumerable<TResult>(this TResult element)
+        public static IEnumerable<TResult> CreateEnumerable<TResult>(this TResult element)
         {
             yield return element;
         }
@@ -29,7 +29,7 @@ namespace KLibrary.Linq
         /// <typeparam name="TResult">The type of the object.</typeparam>
         /// <param name="element">An object.</param>
         /// <returns>An array that contains the input object.</returns>
-        public static TResult[] MakeArray<TResult>(this TResult element)
+        public static TResult[] CreateArray<TResult>(this TResult element)
         {
             return new[] { element };
         }
@@ -61,27 +61,21 @@ namespace KLibrary.Linq
         }
 
         /// <summary>
-        /// Generates an infinite sequence that contains one repeated value.
-        /// </summary>
-        /// <typeparam name="TResult">The type of the value to be repeated in the result sequence.</typeparam>
-        /// <param name="element">The value to be repeated.</param>
-        /// <returns>An <see cref="IEnumerable{TResult}"/> that contains a repeated value.</returns>
-        public static IEnumerable<TResult> Repeat<TResult>(TResult element)
-        {
-            while (true)
-                yield return element;
-        }
-
-        /// <summary>
         /// Generates a sequence that contains one repeated value.
         /// </summary>
         /// <typeparam name="TResult">The type of the value to be repeated in the result sequence.</typeparam>
         /// <param name="element">The value to be repeated.</param>
-        /// <param name="count">The number of times to repeat the value in the generated sequence. <see langword="null"/> if the value is repeated infinitely.</param>
+        /// <param name="count">The number of times to repeat the value in the generated sequence. <see langword="null"/> if the value is repeated forever.</param>
         /// <returns>An <see cref="IEnumerable{TResult}"/> that contains a repeated value.</returns>
-        public static IEnumerable<TResult> Repeat<TResult>(TResult element, int? count)
+        public static IEnumerable<TResult> Repeat<TResult>(TResult element, int? count = null)
         {
-            return count.HasValue ? Enumerable.Repeat(element, count.Value) : Repeat(element);
+            return count.HasValue ? Enumerable.Repeat(element, count.Value) : RepeatForever();
+
+            IEnumerable<TResult> RepeatForever()
+            {
+                while (true)
+                    yield return element;
+            }
         }
     }
 }

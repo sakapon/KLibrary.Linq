@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTest.Linq
 {
     [TestClass]
-    public class EnumerablePipelinesTest
+    public class PipelinesTest
     {
         [TestMethod]
         public void Linq_0()

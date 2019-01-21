@@ -40,7 +40,7 @@ namespace UnitTest.Linq.Lab
         [TestMethod]
         public void EnumerateRecursively_Children()
         {
-            var query = Path.GetFullPath(@"..\..\")
+            var query = Path.GetFullPath(@"..\..\..\")
                 .EnumerateRecursively(p => Directory.EnumerateDirectories(p));
 
             foreach (var path in query)
@@ -50,7 +50,7 @@ namespace UnitTest.Linq.Lab
         [TestMethod]
         public void EnumerateRecursively_Children_Index()
         {
-            var query = new { Index = 0, Path = Path.GetFullPath(@"..\..\") }
+            var query = new { Index = 0, Path = Path.GetFullPath(@"..\..\..\") }
                 .EnumerateRecursively(_ => Directory.EnumerateDirectories(_.Path)
                     .Select(p => new { Index = _.Index + 1, Path = p }));
 
@@ -61,7 +61,7 @@ namespace UnitTest.Linq.Lab
         [TestMethod]
         public void EnumerateRecursively2_Children_Index()
         {
-            var query = new { Index = 0, Path = Path.GetFullPath(@"..\..\") }
+            var query = new { Index = 0, Path = Path.GetFullPath(@"..\..\..\") }
                 .EnumerateRecursively2(_ => Directory.EnumerateDirectories(_.Path)
                     .Select(p => new { Index = _.Index + 1, Path = p }));
 
