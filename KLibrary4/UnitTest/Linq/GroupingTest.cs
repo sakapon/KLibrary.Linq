@@ -30,5 +30,13 @@ namespace UnitTest.Linq
             CollectionAssert.AreEqual(new[] { false, true, false, true, false }, target.Select(g => g.Key).ToArray());
             CollectionAssert.AreEqual(new[] { 3, 1, 3, 1, 2 }, target.Select(g => g.ToArray().Length).ToArray());
         }
+
+        [TestMethod]
+        public void GroupBySequentially_Empty()
+        {
+            var empty = new int[0];
+
+            CollectionAssert.AreEqual(empty, empty.GroupBySequentially(i => i).ToArray());
+        }
     }
 }
