@@ -12,14 +12,14 @@ namespace UnitTest.Linq.Lab
         [TestMethod]
         public void Range_1()
         {
-            CollectionAssert.AreEqual(Enumerable.Range(0, 10).ToArray(), Range().Take(10).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(3, 10).ToArray(), Range(3).Take(10).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(0, 10).ToArray(), Range(0, 10).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(3, 10).ToArray(), Range(3, 10).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Empty<int>().ToArray(), Range(3, 0).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(0, 10).Select(i => 2 * i).ToArray(), Range(0, null, 2).Take(10).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(0, 10).Select(i => 2 * i + 3).ToArray(), Range(3, 10, 2).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(-6, 10).Reverse().ToArray(), Range(3, 10, -1).ToArray());
+            Assert.IsTrue(Enumerable.Range(0, 10).SequenceEqual(Range().Take(10)));
+            Assert.IsTrue(Enumerable.Range(3, 10).SequenceEqual(Range(3).Take(10)));
+            Assert.IsTrue(Enumerable.Range(0, 10).SequenceEqual(Range(0, 10)));
+            Assert.IsTrue(Enumerable.Range(3, 10).SequenceEqual(Range(3, 10)));
+            Assert.IsTrue(Enumerable.Empty<int>().SequenceEqual(Range(3, 0)));
+            Assert.IsTrue(Enumerable.Range(0, 10).Select(i => 2 * i).SequenceEqual(Range(0, null, 2).Take(10)));
+            Assert.IsTrue(Enumerable.Range(0, 10).Select(i => 2 * i + 3).SequenceEqual(Range(3, 10, 2)));
+            Assert.IsTrue(Enumerable.Range(-6, 10).Reverse().SequenceEqual(Range(3, 10, -1)));
         }
     }
 }

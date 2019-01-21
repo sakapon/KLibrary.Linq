@@ -14,8 +14,8 @@ namespace UnitTest.Linq.Lab
         {
             var actual = Enumerable.Range(1, 10).WithIndex().ToArray();
 
-            CollectionAssert.AreEqual(Enumerable.Range(1, 10).ToArray(), actual.Select(x => x.Item1).ToArray());
-            CollectionAssert.AreEqual(Enumerable.Range(0, 10).ToArray(), actual.Select(x => x.Item2).ToArray());
+            Assert.IsTrue(Enumerable.Range(1, 10).SequenceEqual(actual.Select(x => x.Item1)));
+            Assert.IsTrue(Enumerable.Range(0, 10).SequenceEqual(actual.Select(x => x.Item2)));
         }
     }
 }
