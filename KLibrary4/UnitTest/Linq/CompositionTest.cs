@@ -22,9 +22,11 @@ namespace UnitTest.Linq
 
             var actual1 = range1.ZipForShort(range2).ToArray();
             Assert.AreEqual(length1, actual1.Length);
+            Assert.AreEqual(Tuple.Create(length1, length1), actual1.Last());
 
             var actual2 = range2.ZipForShort(range1).ToArray();
             Assert.AreEqual(length1, actual2.Length);
+            Assert.AreEqual(Tuple.Create(length1, length1), actual2.Last());
         }
 
         [TestMethod]
@@ -40,11 +42,11 @@ namespace UnitTest.Linq
 
             var actual1 = range1.ZipForLong(range2).ToArray();
             Assert.AreEqual(length2, actual1.Length);
-            Assert.AreEqual(0, actual1[length2 - 1].Item1);
+            Assert.AreEqual(Tuple.Create(0, length2), actual1.Last());
 
             var actual2 = range2.ZipForLong(range1).ToArray();
             Assert.AreEqual(length2, actual2.Length);
-            Assert.AreEqual(0, actual2[length2 - 1].Item2);
+            Assert.AreEqual(Tuple.Create(length2, 0), actual2.Last());
         }
 
         [TestMethod]
@@ -60,10 +62,11 @@ namespace UnitTest.Linq
 
             var actual1 = range1.ZipForFirst(range2).ToArray();
             Assert.AreEqual(length1, actual1.Length);
+            Assert.AreEqual(Tuple.Create(length1, length1), actual1.Last());
 
             var actual2 = range2.ZipForFirst(range1).ToArray();
             Assert.AreEqual(length2, actual2.Length);
-            Assert.AreEqual(0, actual2[length2 - 1].Item2);
+            Assert.AreEqual(Tuple.Create(length2, 0), actual2.Last());
         }
     }
 }
