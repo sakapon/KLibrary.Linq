@@ -97,6 +97,7 @@ namespace KLibrary.Linq
                 action(item, ++i);
         }
 
+#if NET40
         /// <summary>
         /// Prepends an element to the head of a sequence.
         /// </summary>
@@ -132,6 +133,7 @@ namespace KLibrary.Linq
 
             yield return element;
         }
+#endif
 
         /// <summary>
         /// Returns distinct elements from a sequence by using the keys to compare values.
