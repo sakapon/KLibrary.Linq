@@ -77,5 +77,27 @@ namespace KLibrary.Linq
                     yield return element;
             }
         }
+
+        public static TSource? FirstOrNull<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate = null) where TSource : struct
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) predicate = o => true;
+
+            foreach (var item in source)
+                if (predicate(item)) return item;
+
+            return null;
+        }
+
+        public static TSource? LastOrNull<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate = null) where TSource : struct
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) predicate = o => true;
+
+            foreach (var item in source.Reverse())
+                if (predicate(item)) return item;
+
+            return null;
+        }
     }
 }
