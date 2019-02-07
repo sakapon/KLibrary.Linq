@@ -6,6 +6,20 @@ namespace KLibrary.Linq.Lab
 {
     public static class Pipelines
     {
+        public static IEnumerable<TSource> Do<TSource>(this IEnumerable<TSource> source, Action<TSource, IList<TSource>> action)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
+            var history = new List<TSource>();
+            foreach (var item in source)
+            {
+                action(item, history);
+                history.Add(item);
+                yield return item;
+            }
+        }
+
         public static IEnumerable<Tuple<TSource, int>> WithIndex<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
