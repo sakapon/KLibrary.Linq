@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KLibrary.Linq
 {
@@ -79,6 +80,14 @@ namespace KLibrary.Linq
             {
                 yield return Tuple.Create(enumerator1.Current, enumerator2.MoveNext() ? enumerator2.Current : default(TSecond));
             }
+        }
+
+        public static Dictionary<TKey, TValue> ZipToDictionary<TKey, TValue>(this IEnumerable<TKey> keys, IEnumerable<TValue> values)
+        {
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
+            if (values == null) throw new ArgumentNullException(nameof(values));
+
+            return keys.Zip(values, (k, v) => new { k, v }).ToDictionary(_ => _.k, _ => _.v);
         }
     }
 }
