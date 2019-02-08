@@ -43,9 +43,10 @@ namespace KLibrary.Linq.Lab
             return source;
         }
 
-        public static TSource FirstToMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource FirstArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
 
             var o = source
                 .Select(e => new { e, v = valueSelector(e) })
@@ -53,9 +54,10 @@ namespace KLibrary.Linq.Lab
             return o.e;
         }
 
-        public static TSource FirstToMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource FirstArgMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
 
             var o = source
                 .Select(e => new { e, v = valueSelector(e) })
@@ -63,9 +65,10 @@ namespace KLibrary.Linq.Lab
             return o.e;
         }
 
-        public static TSource LastToMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource LastArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
 
             var o = source
                 .Select(e => new { e, v = valueSelector(e) })
@@ -73,9 +76,10 @@ namespace KLibrary.Linq.Lab
             return o.e;
         }
 
-        public static TSource LastToMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource LastArgMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
 
             var o = source
                 .Select(e => new { e, v = valueSelector(e) })
