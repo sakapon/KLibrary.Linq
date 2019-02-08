@@ -43,48 +43,70 @@ namespace KLibrary.Linq.Lab
             return source;
         }
 
-        public static TSource FirstArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource FirstArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
 
             var o = source
-                .Select(e => new { e, v = valueSelector(e) })
+                .Select(e => new { e, v = selector(e) })
                 .Aggregate((o1, o2) => o1.v <= o2.v ? o1 : o2);
             return o.e;
         }
 
-        public static TSource FirstArgMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource FirstArgMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
 
             var o = source
-                .Select(e => new { e, v = valueSelector(e) })
+                .Select(e => new { e, v = selector(e) })
                 .Aggregate((o1, o2) => o1.v >= o2.v ? o1 : o2);
             return o.e;
         }
 
-        public static TSource LastArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource LastArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
 
             var o = source
-                .Select(e => new { e, v = valueSelector(e) })
+                .Select(e => new { e, v = selector(e) })
                 .Aggregate((o1, o2) => o1.v < o2.v ? o1 : o2);
             return o.e;
         }
 
-        public static TSource LastArgMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> valueSelector)
+        public static TSource LastArgMax<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (valueSelector == null) throw new ArgumentNullException(nameof(valueSelector));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
 
             var o = source
-                .Select(e => new { e, v = valueSelector(e) })
+                .Select(e => new { e, v = selector(e) })
                 .Aggregate((o1, o2) => o1.v > o2.v ? o1 : o2);
             return o.e;
+        }
+
+        public static int FirstMinIndex<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+
+            var o = source
+                .Select((e, i) => new { i, v = selector(e) })
+                .Aggregate((o1, o2) => o1.v <= o2.v ? o1 : o2);
+            return o.i;
+        }
+
+        public static Tuple<TSource, int, double> FirstMinInfo<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+
+            var o = source
+                .Select((e, i) => Tuple.Create(e, i, selector(e)))
+                .Aggregate((o1, o2) => o1.Item3 <= o2.Item3 ? o1 : o2);
+            return o;
         }
     }
 }
