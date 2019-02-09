@@ -99,5 +99,34 @@ namespace KLibrary.Linq
 
             return null;
         }
+
+        public static bool SequenceEqual<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, bool> comparer)
+        {
+            if (first == null) throw new ArgumentNullException(nameof(first));
+            if (second == null) throw new ArgumentNullException(nameof(second));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
+
+            using (var e1 = first.GetEnumerator())
+            using (var e2 = second.GetEnumerator())
+            {
+                while (true)
+                {
+                    var hasNext1 = e1.MoveNext();
+                    var hasNext2 = e2.MoveNext();
+
+                    if (hasNext1 && hasNext2)
+                    {
+                        if (!comparer(e1.Current, e2.Current))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return !hasNext1 && !hasNext2;
+                    }
+                }
+            }
+        }
     }
 }

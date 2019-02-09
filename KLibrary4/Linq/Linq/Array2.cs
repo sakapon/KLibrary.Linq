@@ -20,15 +20,19 @@ namespace KLibrary.Linq
             return Tuple.Create(a1, a2);
         }
 
-        public static bool ArrayEqual<T>(this T[] first, T[] second)
+        public static bool ArrayEqual<T1, T2>(this T1[] first, T2[] second, Func<T1, T2, bool> comparer)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));
             if (second == null) throw new ArgumentNullException(nameof(second));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
 
             if (first.Length != second.Length) return false;
             for (var i = 0; i < first.Length; i++)
-                if (!Equals(first[i], second[i])) return false;
+                if (!comparer(first[i], second[i])) return false;
             return true;
         }
+
+        public static bool ArrayEqual<T>(this T[] first, T[] second) =>
+            ArrayEqual(first, second, (o1, o2) => Equals(o1, o2));
     }
 }
