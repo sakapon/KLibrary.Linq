@@ -114,17 +114,8 @@ namespace KLibrary.Linq
                     var hasNext1 = e1.MoveNext();
                     var hasNext2 = e2.MoveNext();
 
-                    if (hasNext1 && hasNext2)
-                    {
-                        if (!comparer(e1.Current, e2.Current))
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return !hasNext1 && !hasNext2;
-                    }
+                    if (!(hasNext1 && hasNext2)) return !(hasNext1 || hasNext2);
+                    if (!comparer(e1.Current, e2.Current)) return false;
                 }
             }
         }
