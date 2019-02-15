@@ -29,5 +29,14 @@ namespace KLibrary.Linq.Lab
             for (var i = minValue; i <= maxValue; i++)
                 yield return i;
         }
+
+        // This will be no longer needed because we can use the Any method.
+        public static bool Contains<TSource>(this IEnumerable<TSource> source, TSource value, Func<TSource, TSource, bool> comparer)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (comparer == null) return source.Contains(value);
+
+            return source.Any(e => comparer(e, value));
+        }
     }
 }
