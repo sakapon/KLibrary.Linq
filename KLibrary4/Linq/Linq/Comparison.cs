@@ -5,15 +5,11 @@ namespace KLibrary.Linq
 {
     public static class Comparison
     {
-        public static IComparer<T> CreateComparer<T>(Func<T, T, int> compare)
-        {
-            return new DelegateComparer<T>(compare);
-        }
+        public static IComparer<T> CreateComparer<T>(Func<T, T, int> compare) =>
+            new DelegateComparer<T>(compare);
 
-        public static IEqualityComparer<T> CreateEqualityComparer<T>(Func<T, T, bool> equals)
-        {
-            return new DelegateEqualityComparer<T>(equals);
-        }
+        public static IEqualityComparer<T> CreateEqualityComparer<T>(Func<T, T, bool> equals) =>
+            new DelegateEqualityComparer<T>(equals);
     }
 
     class DelegateComparer<T> : Comparer<T>
@@ -22,14 +18,10 @@ namespace KLibrary.Linq
 
         public DelegateComparer(Func<T, T, int> compare)
         {
-            if (compare == null) throw new ArgumentNullException("compare");
-            _compare = compare;
+            _compare = compare ?? throw new ArgumentNullException(nameof(compare));
         }
 
-        public override int Compare(T x, T y)
-        {
-            return _compare(x, y);
-        }
+        public override int Compare(T x, T y) => _compare(x, y);
     }
 
     class DelegateEqualityComparer<T> : EqualityComparer<T>
@@ -38,18 +30,12 @@ namespace KLibrary.Linq
 
         public DelegateEqualityComparer(Func<T, T, bool> equals)
         {
-            if (equals == null) throw new ArgumentNullException("equals");
-            _equals = equals;
+            _equals = equals ?? throw new ArgumentNullException(nameof(equals));
         }
 
-        public override bool Equals(T x, T y)
-        {
-            return _equals(x, y);
-        }
+        public override bool Equals(T x, T y) => _equals(x, y);
 
-        public override int GetHashCode(T obj)
-        {
-            return obj != null ? obj.GetHashCode() : 0;
-        }
+        public override int GetHashCode(T obj) =>
+            obj?.GetHashCode() ?? throw new ArgumentNullException(nameof(obj));
     }
 }
