@@ -68,5 +68,18 @@ namespace UnitTest.Linq
             Assert.AreEqual(length2, actual2.Length);
             Assert.AreEqual(Tuple.Create(length2, 0), actual2.Last());
         }
+
+        [TestMethod]
+        public void ZipToDictionary_1()
+        {
+            var length1 = 10;
+            var length2 = 9;
+            var range1 = Enumerable.Range(11, length1);
+            var range2 = Enumerable.Range(21, length2);
+
+            var actual = range1.ZipToDictionary(range2);
+            Assert.AreEqual(length2, actual.Count);
+            Assert.AreEqual(29, actual[19]);
+        }
     }
 }

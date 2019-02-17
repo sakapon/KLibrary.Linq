@@ -82,6 +82,14 @@ namespace KLibrary.Linq
             }
         }
 
+        /// <summary>
+        /// Creates a pair from the corresponding elements of two sequences, producing a dictionary of the results.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the keys.</typeparam>
+        /// <typeparam name="TValue">The type of the values.</typeparam>
+        /// <param name="keys">A sequence containing the keys.</param>
+        /// <param name="values">A sequence containing the values.</param>
+        /// <returns>A <see cref="Dictionary{TKey, TValue}"/> that contains keys and values.</returns>
         public static Dictionary<TKey, TValue> ZipToDictionary<TKey, TValue>(this IEnumerable<TKey> keys, IEnumerable<TValue> values)
         {
             if (keys == null) throw new ArgumentNullException(nameof(keys));
