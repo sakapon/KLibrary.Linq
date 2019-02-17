@@ -60,13 +60,6 @@ namespace KLibrary.Linq
             return a;
         }
 
-        public static Tuple<T[], T[]> Split<T>(this T[] source, int index)
-        {
-            var a1 = source.Subarray(0, index);
-            var a2 = source.Subarray(index, source.Length - index);
-            return Tuple.Create(a1, a2);
-        }
-
         public static bool ArrayEqual<T1, T2>(this T1[] first, T2[] second, Func<T1, T2, bool> comparer)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));
