@@ -1,9 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KLibrary.Linq
 {
     public static class Array2
     {
+        public static TSource[] Filter<TSource>(this TSource[] source, Func<TSource, bool> predicate)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            var l = new List<TSource>();
+            for (var i = 0; i < source.Length; i++)
+                if (predicate(source[i]))
+                    l.Add(source[i]);
+            return l.ToArray();
+        }
+
+        public static TSource[] Filter<TSource>(this TSource[] source, Func<TSource, int, bool> predicate)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            var l = new List<TSource>();
+            for (var i = 0; i < source.Length; i++)
+                if (predicate(source[i], i))
+                    l.Add(source[i]);
+            return l.ToArray();
+        }
+
+        public static TResult[] Map<TSource, TResult>(this TSource[] source, Func<TSource, TResult> map)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (map == null) throw new ArgumentNullException(nameof(map));
+
+            var a = new TResult[source.Length];
+            for (var i = 0; i < source.Length; i++)
+                a[i] = map(source[i]);
+            return a;
+        }
+
+        public static TResult[] Map<TSource, TResult>(this TSource[] source, Func<TSource, int, TResult> map)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (map == null) throw new ArgumentNullException(nameof(map));
+
+            var a = new TResult[source.Length];
+            for (var i = 0; i < source.Length; i++)
+                a[i] = map(source[i], i);
+            return a;
+        }
+
         public static T[] Subarray<T>(this T[] source, int start, int count)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
