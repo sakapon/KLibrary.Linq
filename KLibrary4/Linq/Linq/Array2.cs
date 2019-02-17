@@ -51,6 +51,30 @@ namespace KLibrary.Linq
             return a;
         }
 
+        public static TSource[] Sort<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+
+            var keys = source.Map(keySelector);
+            var a = new TSource[source.Length];
+            Array.Copy(source, a, source.Length);
+            Array.Sort(keys, a);
+            return a;
+        }
+
+        public static int[] Range(int start, int count, int step = 1)
+        {
+            var a = new int[count];
+            var n = start;
+            for (var i = 0; i < count; i++)
+            {
+                a[i] = n;
+                n += step;
+            }
+            return a;
+        }
+
         public static T[] Subarray<T>(this T[] source, int start, int count)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
