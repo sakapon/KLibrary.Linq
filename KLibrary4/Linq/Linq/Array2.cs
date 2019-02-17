@@ -89,6 +89,8 @@ namespace KLibrary.Linq
 
         public static int[] Range(int start, int count, int step = 1)
         {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), count, "The value must be non-negative.");
+
             var a = new int[count];
             var n = start;
             for (var i = 0; i < count; i++)
@@ -99,11 +101,12 @@ namespace KLibrary.Linq
             return a;
         }
 
-        public static T[] Subarray<T>(this T[] source, int start, int count)
+        public static TSource[] Subarray<TSource>(this TSource[] source, int start, int count)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), count, "The value must be non-negative.");
 
-            var a = new T[count];
+            var a = new TSource[count];
             Array.Copy(source, start, a, 0, count);
             return a;
         }
