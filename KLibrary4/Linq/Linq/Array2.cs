@@ -51,6 +51,17 @@ namespace KLibrary.Linq
             return a;
         }
 
+        public static TSource[] Sort<TSource>(this TSource[] source, Func<TSource, TSource, int> comparer)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
+
+            var a = new TSource[source.Length];
+            Array.Copy(source, a, source.Length);
+            Array.Sort(a, Comparison.CreateComparer(comparer));
+            return a;
+        }
+
         public static TSource[] Sort<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -60,6 +71,19 @@ namespace KLibrary.Linq
             var a = new TSource[source.Length];
             Array.Copy(source, a, source.Length);
             Array.Sort(keys, a);
+            return a;
+        }
+
+        public static TSource[] Sort<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector, Func<TKey, TKey, int> comparer)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
+
+            var keys = source.Map(keySelector);
+            var a = new TSource[source.Length];
+            Array.Copy(source, a, source.Length);
+            Array.Sort(keys, a, Comparison.CreateComparer(comparer));
             return a;
         }
 

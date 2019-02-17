@@ -15,8 +15,15 @@ namespace UnitTest.Linq
             var result = Range(1, 15, 2)
                 .Filter(i => i % 3 != 0)
                 .Map(i => i * i)
-                .Sort(Convert.ToString);
+                .Sort(i => Convert.ToString(i));
             Console.WriteLine(string.Join(", ", result));
+        }
+
+        [TestMethod]
+        public void Sort_1()
+        {
+            Assert.IsTrue(Enumerable.Range(0, 10).Reverse().SequenceEqual(Range(0, 10).Sort((x, y) => -x.CompareTo(y))));
+            Assert.IsTrue(Enumerable.Range(0, 10).Reverse().SequenceEqual(Range(0, 10).Sort(x => (double)x, (x, y) => -x.CompareTo(y))));
         }
 
         [TestMethod]
