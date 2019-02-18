@@ -12,11 +12,11 @@ namespace UnitTest.Linq
         [TestMethod]
         public void Chain()
         {
-            var result = Range(1, 15, 2)
+            Range(1, 15, 2)
                 .Filter(i => i % 3 != 0)
                 .Map(i => i * i)
-                .Sort(i => Convert.ToString(i));
-            Console.WriteLine(string.Join(", ", result));
+                .Sort(i => Convert.ToString(i))
+                .ForEach(Console.WriteLine);
         }
 
         [TestMethod]
@@ -27,6 +27,12 @@ namespace UnitTest.Linq
         }
 
         [TestMethod]
+        public void Reverse_1()
+        {
+            Assert.IsTrue(Enumerable.Range(3, 10).Reverse().SequenceEqual(Range(3, 10).Reverse()));
+        }
+
+        [TestMethod]
         public void Range_1()
         {
             Assert.IsTrue(Enumerable.Range(0, 10).SequenceEqual(Range(0, 10)));
@@ -34,6 +40,24 @@ namespace UnitTest.Linq
             Assert.IsTrue(Enumerable.Empty<int>().SequenceEqual(Range(3, 0)));
             Assert.IsTrue(Enumerable.Range(0, 10).Select(i => 2 * i + 3).SequenceEqual(Range(3, 10, 2)));
             Assert.IsTrue(Enumerable.Range(-6, 10).Reverse().SequenceEqual(Range(3, 10, -1)));
+        }
+
+        [TestMethod]
+        public void Subarray_1()
+        {
+            Assert.IsTrue(Enumerable.Range(0, 5).SequenceEqual(Range(0, 10).Subarray(0, 5)));
+            Assert.IsTrue(Enumerable.Range(3, 5).SequenceEqual(Range(0, 10).Subarray(3, 5)));
+            Assert.IsTrue(Enumerable.Range(5, 5).SequenceEqual(Range(0, 10).Subarray(5, 5)));
+        }
+
+        [TestMethod]
+        public void ArrayEqual_1()
+        {
+            Assert.AreEqual(true, Array.Empty<int>().ArrayEqual(Array.Empty<int>()));
+            Assert.AreEqual(true, Range(0, 10).ArrayEqual(Range(0, 10)));
+            Assert.AreEqual(false, Range(0, 10).ArrayEqual(Range(1, 10)));
+            Assert.AreEqual(true, new[] { 1.23, 2, -3 }.ArrayEqual(new[] { "1.23", "2", "-3" }, (d, s) => d.ToString() == s));
+            Assert.AreEqual(false, new[] { 1.23, 2, -3, 4 }.ArrayEqual(new[] { "1.23", "2", "-3" }, (d, s) => d.ToString() == s));
         }
     }
 }
