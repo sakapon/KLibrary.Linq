@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <AssemblyName>KLibrary.Linq</AssemblyName>
     <RootNamespace>KLibrary</RootNamespace>
-    <Version>4.0.6</Version>
+    <Version>4.0.7</Version>
     <Title>KLibrary.Linq</Title>
     <AssemblyTitle>KLibrary.Linq</AssemblyTitle>
     <Product>KLibrary</Product>
@@ -14,13 +14,18 @@
     <PackageProjectUrl>https://github.com/sakapon/KLibrary.Linq</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/sakapon/KLibrary.Linq/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>LINQ</PackageTags>
-    <PackageReleaseNotes>Add features such as composition and grouping.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add extension methods for Array and so on.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-    <DocumentationFile>bin\Release\KLibrary.Linq.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\KLibrary.Linq.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\KLibrary.Linq.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
