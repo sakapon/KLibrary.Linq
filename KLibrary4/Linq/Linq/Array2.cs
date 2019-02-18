@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace KLibrary.Linq
 {
+    [DebuggerStepThrough]
     public static class Array2
     {
         public static TSource[] Filter<TSource>(this TSource[] source, Func<TSource, bool> predicate)
@@ -87,6 +89,36 @@ namespace KLibrary.Linq
             return a;
         }
 
+        public static TSource[] ForEach<TSource>(this TSource[] source, Action<TSource> action)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
+            for (var i = 0; i < source.Length; i++)
+                action(source[i]);
+            return source;
+        }
+
+        public static TSource[] ForEach<TSource>(this TSource[] source, Action<TSource, int> action)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
+            for (var i = 0; i < source.Length; i++)
+                action(source[i], i);
+            return source;
+        }
+
+        public static TSource[] Reverse<TSource>(this TSource[] source)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
+            var a = new TSource[source.Length];
+            Array.Copy(source, a, source.Length);
+            Array.Reverse(a);
+            return a;
+        }
+
         public static int[] Range(int start, int count, int step = 1)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), count, "The value must be non-negative.");
@@ -111,7 +143,7 @@ namespace KLibrary.Linq
             return a;
         }
 
-        public static bool ArrayEqual<T1, T2>(this T1[] first, T2[] second, Func<T1, T2, bool> comparer)
+        public static bool ArrayEqual<TFirst, TSecond>(this TFirst[] first, TSecond[] second, Func<TFirst, TSecond, bool> comparer)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));
             if (second == null) throw new ArgumentNullException(nameof(second));
@@ -123,7 +155,7 @@ namespace KLibrary.Linq
             return true;
         }
 
-        public static bool ArrayEqual<T>(this T[] first, T[] second) =>
+        public static bool ArrayEqual<TSource>(this TSource[] first, TSource[] second) =>
             ArrayEqual(first, second, (o1, o2) => Equals(o1, o2));
     }
 }
