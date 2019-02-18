@@ -78,6 +78,16 @@ namespace KLibrary.Linq
             }
         }
 
+        /// <summary>
+        /// Returns the first element of the sequence that satisfies a condition or null if no such element is found.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <returns>
+        /// <see langword="null"/> if source is empty or if no element passes the test specified by predicate;
+        /// otherwise, the first element in source that passes the test specified by predicate.
+        /// </returns>
         public static TSource? FirstOrNull<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate = null) where TSource : struct
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -89,6 +99,16 @@ namespace KLibrary.Linq
             return null;
         }
 
+        /// <summary>
+        /// Returns the last element of the sequence that satisfies a condition or null if no such element is found.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <returns>
+        /// <see langword="null"/> if source is empty or if no element passes the test specified by predicate;
+        /// otherwise, the last element in source that passes the test specified by predicate.
+        /// </returns>
         public static TSource? LastOrNull<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate = null) where TSource : struct
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -100,6 +120,15 @@ namespace KLibrary.Linq
             return null;
         }
 
+        /// <summary>
+        /// Determines whether two sequences are equal by comparing their elements by using a specified function.
+        /// </summary>
+        /// <typeparam name="TFirst">The type of the elements of the first input sequence.</typeparam>
+        /// <typeparam name="TSecond">The type of the elements of the second input sequence.</typeparam>
+        /// <param name="first">The first sequence to compare.</param>
+        /// <param name="second">The second sequence to compare.</param>
+        /// <param name="comparer">A function to use to compare elements.</param>
+        /// <returns>true if the two source sequences are of equal length and their corresponding elements compare equal according to comparer; otherwise, false.</returns>
         public static bool SequenceEqual<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, bool> comparer)
         {
             if (first == null) throw new ArgumentNullException(nameof(first));

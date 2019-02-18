@@ -54,10 +54,12 @@ namespace UnitTest.Linq
         public void ArrayEqual_1()
         {
             Assert.AreEqual(true, Array.Empty<int>().ArrayEqual(Array.Empty<int>()));
+            Assert.AreEqual(false, new int[2].ArrayEqual(new int[3]));
+            Assert.AreEqual(false, new int[3].ArrayEqual(new int[2], (i, j) => true));
             Assert.AreEqual(true, Range(0, 10).ArrayEqual(Range(0, 10)));
             Assert.AreEqual(false, Range(0, 10).ArrayEqual(Range(1, 10)));
             Assert.AreEqual(true, new[] { 1.23, 2, -3 }.ArrayEqual(new[] { "1.23", "2", "-3" }, (d, s) => d.ToString() == s));
-            Assert.AreEqual(false, new[] { 1.23, 2, -3, 4 }.ArrayEqual(new[] { "1.23", "2", "-3" }, (d, s) => d.ToString() == s));
+            Assert.AreEqual(false, new[] { 1.23, 2, -3 }.ArrayEqual(new[] { "1.23", "2", "-3.0" }, (d, s) => d.ToString() == s));
         }
     }
 }
