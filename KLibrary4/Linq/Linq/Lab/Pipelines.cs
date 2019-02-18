@@ -43,6 +43,27 @@ namespace KLibrary.Linq.Lab
             return source;
         }
 
+        public static TSource FirstArg<TSource>(this IEnumerable<TSource> source, Func<TSource, TSource, int> comparer = null)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (comparer == null) comparer = Comparer<TSource>.Default.Compare;
+
+            return source
+                .Aggregate((o1, o2) => comparer(o1, o2) <= 0 ? o1 : o2);
+        }
+
+        public static TSource FirstArg<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TKey, TKey, int> comparer = null)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+            if (comparer == null) comparer = Comparer<TKey>.Default.Compare;
+
+            var o = source
+                .Select(e => new { e, v = keySelector(e) })
+                .Aggregate((o1, o2) => comparer(o1.v, o2.v) <= 0 ? o1 : o2);
+            return o.e;
+        }
+
         public static TSource FirstArgMin<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
